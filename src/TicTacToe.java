@@ -18,9 +18,10 @@ public class TicTacToe {
         boolean done = false; // this exits game loop. Set to false so it will loop. If set to true, it will break out of loop
 
         do { // This
-            clearBoard(); // must be stated before showBoard method.Gives every index in 2d array a value of a space aka empty
+            clearBoard(); // must be stated before showBoard method. Gives every index in 2d array a value of a space aka empty
             moveCnt = 0; // resets move count
             currentPlayer = "X"; // Resets player back to X
+            done = false;
             do {     // this loops the actual tic-tac-toe game.
                 showBoard(); // Shows the board and the spaces from clearBoard method.
                 System.out.print("Enter your move player " + currentPlayer);
@@ -36,12 +37,12 @@ public class TicTacToe {
                 {
                     board[adjRowMove][adjColMove] = currentPlayer;
 
-                    if (isWin(currentPlayer)){ // how do we check for wins after moveCnt > 5
+                    if (moveCnt > 5 && isWin(currentPlayer)){ // how do we check for wins after moveCnt > 5
                         showBoard();
                         System.out.println("Player " + currentPlayer + " wins!");
                         done = true;
                     }
-                    if (isTie()){
+                    if (moveCnt > 7 && isTie()){
                         showBoard();
                         System.out.println("Its a tie");
                         done = true;
