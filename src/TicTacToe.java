@@ -27,34 +27,31 @@ public class TicTacToe {
                 System.out.print("Enter your move player " + currentPlayer);
                 rowMove = SafeInput.getRangedInt(in, "Enter the coordinates for the row", 1, 3);
                 colMove = SafeInput.getRangedInt(in, "Enter the coordinates for the columns", 1, 3);
-                moveCnt++; // Increments moveCnt
+                moveCnt++; // Increments moveCnt after every move.
 
                 adjRowMove = rowMove -1;
                 adjColMove = colMove -1;
 
 
-                if (isValidMove(adjRowMove,adjColMove))
-                {
+                if (isValidMove(adjRowMove,adjColMove)) { // Makes sure the players chooses a location has a space in it
                     board[adjRowMove][adjColMove] = currentPlayer;
 
-                    if (moveCnt > 5 && isWin(currentPlayer)){ // how do we check for wins after moveCnt > 5
+                    if (moveCnt > 4 && isWin(currentPlayer)){ // Checks for win after 4 moves
                         showBoard();
                         System.out.println("Player " + currentPlayer + " wins!");
                         done = true;
                     }
-                    if (moveCnt > 7 && isTie()){
+                    if (moveCnt > 7 && isTie()){ // checks for ties after 7 moves
                         showBoard();
                         System.out.println("Its a tie");
                         done = true;
                     }
-                    if (currentPlayer.equals("X")){
+                    if (currentPlayer.equals("X")){ // Alternates players.
                         currentPlayer = "O";
                     } else {
                         currentPlayer = "X";
-                    }
-                }
-                else
-                {
+                    } // End of if else that alternates players
+                } else {
                     System.out.println("Invalid move. Try again.");
                 }
             } while (!done);
